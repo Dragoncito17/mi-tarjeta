@@ -1,39 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Para ti 💖</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      color: white;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>Para Nicole 💖</title>
 
-    .card {
-      background: rgba(0,0,0,0.3);
-      padding: 30px;
-      border-radius: 20px;
-      animation: aparecer 1.5s ease;
-    }
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+}
 
-    @keyframes aparecer {
-      from {opacity: 0; transform: scale(0.5);}
-      to {opacity: 1; transform: scale(1);}
-    }
-  </style>
+/* Carta */
+.card{
+  width:320px;
+  height:220px;
+  background:white;
+  position:relative;
+  border-radius:15px;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  transition:0.5s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card.open{
+  height:450px;
+}
+
+.text{
+  opacity:0;
+  padding:20px;
+  color:#ff4d6d;
+  transition:0.5s;
+}
+
+.card.open .text{
+  opacity:1;
+}
+
+img{
+  width:120px;
+  border-radius:15px;
+  margin-top:10px;
+}
+
+/* Botón */
+button{
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+}
+
+/* Corazones */
+.heart{
+  position:absolute;
+  color:#ff4d6d;
+  font-size:20px;
+  animation:float 4s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(0); opacity:1;}
+  to{transform:translateY(-600px); opacity:0;}
+}
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Para ti ❤️</h1>
-    <p>Eres alguien muy especial para mí.</p>
-    <p>Gracias por existir 💕</p>
+
+<audio autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" onclick="abrirCarta()">
+  <div>
+    <h3>Haz clic 💌</h3>
+    <div class="text">
+      <h2>Para Nicole ❤️</h2>
+      <p>Nicole, eres la persona más especial de mi vida.</p>
+      <p>Gracias por hacerme tan feliz cada día 💕</p>
+
+      <img src="foto.jpg" alt="Nuestra foto">
+
+      <button>Te amo Nicole 💖</button>
+    </div>
   </div>
+</div>
+
+<script>
+function abrirCarta(){
+  document.querySelector(".card").classList.toggle("open");
+}
+
+/* Corazones flotando */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.top="100vh";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{heart.remove();},4000);
+},500);
+</script>
+
 </body>
 </html>
